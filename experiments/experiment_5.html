@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experiment 5</title>
+</head>
+<body>
+    <h2 id="heading">Welcome to DOM Manipulation</h2>
+    <p id="message">This is the original text.</p>
+
+    <button onclick="changeText()">Change Text</button>
+    <button onclick="changeColor()">Change Color</button>
+
+    <script>
+        function changeText() {
+            document.getElementById("message").textContent =
+                "The text has been changed!";
+            document.getElementById("heading").textContent =
+                "DOM Manipulation Example";
+        }
+
+        function changeColor() {
+            document.body.style.backgroundColor = "lightblue";
+            document.getElementById("heading").style.color = "red";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experiment 4</title>
+</head>
+<body>
+    <h2>Simple Calculator</h2>
+
+    <input type="number" id="a" placeholder="First number">
+    <input type="number" id="b" placeholder="Second number">
+    <br><br>
+
+    <button onclick="calculate('+')">Add</button>
+    <button onclick="calculate('-')">Subtract</button>
+    <button onclick="calculate('*')">Multiply</button>
+    <button onclick="calculate('/')">Divide</button>
+
+    <p id="result"></p>
+
+    <script>
+        function calculate(op) {
+            let x = document.getElementById("a").value;
+            let y = document.getElementById("b").value;
+
+            if (x.trim() === "" || y.trim() === "") {
+                document.getElementById("result").textContent =
+                    "Enter both numbers.";
+                return;
+            }
+
+            x = Number(x);
+            y = Number(y);
+            let r;
+
+            switch (op) {
+                case '+': r = x + y; break;
+                case '-': r = x - y; break;
+                case '*': r = x * y; break;
+                case '/':
+                    if (y === 0) {
+                        document.getElementById("result").textContent =
+                            "Cannot divide by zero.";
+                        return;
+                    }
+                    r = x / y;
+                    break;
+            }
+
+            document.getElementById("result").textContent =
+                "Result: " + r;
+        }
+    </script>
+</body>
+</html>

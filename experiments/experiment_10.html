@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experiment 10</title>
+</head>
+<body>
+    <h2>Matrix Transpose</h2>
+
+    <p>Original Matrix:</p>
+    <pre id="original"></pre>
+
+    <p>Transpose Matrix:</p>
+    <pre id="transpose"></pre>
+
+    <script>
+        const matrix = [
+            [1, 2, 3],
+            [4, 5, 6]
+        ];
+
+        let transposed = [];
+
+        for (let j = 0; j < matrix[0].length; j++) {
+            transposed[j] = [];
+
+            for (let i = 0; i < matrix.length; i++) {
+                transposed[j][i] = matrix[i][j];
+            }
+        }
+
+        document.getElementById("original").textContent =
+            matrix.map(row => row.join(" ")).join("\n");
+
+        document.getElementById("transpose").textContent =
+            transposed.map(row => row.join(" ")).join("\n");
+    </script>
+</body>
+</html>

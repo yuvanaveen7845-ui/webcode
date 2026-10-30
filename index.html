@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practical Lab Record - 10 Experiments</title>
+    <meta name="description" content="Complete 10 HTML & JavaScript experiments for practical record with one-click code copy, live interactive preview, and file download.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="brand-section">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Sidebar Menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <div class="brand-icon">JS</div>
+            <div class="brand-text">
+                <h1>Web Technology Lab <span class="brand-badge">Practical Record</span></h1>
+                <p>10 Complete HTML & JavaScript Experiments</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <div class="quick-stats">
+                <span>Total Experiments: <strong>10</strong></span>
+                <span>•</span>
+                <span id="activeExpStat">Current: <strong>#1</strong></span>
+            </div>
+
+            <button class="header-btn" id="openExportModalBtn" title="Copy or view all 10 programs together">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>All Programs</span>
+            </button>
+
+            <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+                <svg id="themeIconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="themeIconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <div class="app-container">
+        <!-- Backdrop for mobile drawer -->
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+        <!-- Left Navigation Sidebar -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-search-box">
+                <div class="search-input-wrapper">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search experiment or keyword..." autocomplete="off">
+                    <button class="search-clear-btn" id="searchClearBtn">&times;</button>
+                </div>
+            </div>
+
+            <!-- Categories filter bar -->
+            <div class="sidebar-tags-bar" id="categoryFilterBar">
+                <button class="filter-chip active" data-category="ALL">All (10)</button>
+                <button class="filter-chip" data-category="Basics & Variables">Variables</button>
+                <button class="filter-chip" data-category="Conditional Logic">Conditionals</button>
+                <button class="filter-chip" data-category="Loops & Iterations">Loops</button>
+                <button class="filter-chip" data-category="Functions">Functions</button>
+                <button class="filter-chip" data-category="DOM Manipulation">DOM</button>
+                <button class="filter-chip" data-category="Event Listeners">Events</button>
+                <button class="filter-chip" data-category="Form Validation">Validation</button>
+                <button class="filter-chip" data-category="Tables & Arrays">Tables</button>
+                <button class="filter-chip" data-category="2D Arrays">Arrays</button>
+            </div>
+
+            <!-- List of all 10 experiments -->
+            <div class="sidebar-experiments-list" id="experimentsListContainer">
+                <!-- Dynamically populated via app.js -->
+            </div>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <main class="app-content" id="appContent">
+            
+            <!-- Experiment Hero Header -->
+            <section class="exp-hero">
+                <div class="hero-meta-row">
+                    <div class="hero-badges">
+                        <span class="badge-tag" id="expNumberBadge">EXPERIMENT 01</span>
+                        <span class="badge-category" id="expCategoryBadge">Basics & Variables</span>
+                        <span class="badge-counter" id="expCounterBadge">1 of 10</span>
+                    </div>
+
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">
+                        Tip: Press <kbd style="background:var(--bg-primary); padding:2px 6px; border-radius:4px; border:1px solid var(--border-color); font-family:var(--font-mono);">C</kbd> to copy code
+                    </div>
+                </div>
+
+                <h2 class="exp-main-title" id="expTitle">1. Welcome Message and Arithmetic Using Variables</h2>
+
+                <!-- Aim Callout Box -->
+                <div class="aim-card">
+                    <div class="aim-icon">🎯</div>
+                    <div class="aim-text">
+                        <div class="aim-label">AIM OF THE EXPERIMENT</div>
+                        <div class="aim-content" id="expAim">To display a welcome message and perform arithmetic operations using variables.</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons: Copy Program, Live Run, Download -->
+                <div class="hero-actions-bar">
+                    <button class="btn-primary-action" id="copyFullProgramBtn" title="Copy full HTML & JavaScript code">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span id="copyBtnText">Copy Program Code</span>
+                    </button>
+
+                    <button class="btn-secondary-action" id="copyAimTitleBtn" title="Copy Aim and Title for lab record write-up">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                        </svg>
+                        <span>Copy Title & Aim</span>
+                    </button>
+
+                    <button class="btn-secondary-action" id="downloadHtmlBtn" title="Download standalone .html file">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span id="downloadBtnText">Download .html</span>
+                    </button>
+
+                    <button class="btn-secondary-action" id="openExternalBtn" title="Open program directly in a new tab">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        <span>Open in New Tab</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Viewer Card with Tabs: Code, Live Preview, Sample Output -->
+            <section class="viewer-card">
+                <div class="viewer-tabs-header">
+                    <div class="tabs-group">
+                        <button class="tab-btn active" data-tab="code">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                            <span>Program Code</span>
+                        </button>
+                        <button class="tab-btn" data-tab="preview">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            <span>Live Interactive Output</span>
+                        </button>
+                        <button class="tab-btn" data-tab="sample">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            <span>Sample Output / Manual</span>
+                        </button>
+                    </div>
+
+                    <div class="tab-extra-actions">
+                        <span class="file-info-pill" id="fileInfoBadge">experiment_1.html • 25 lines</span>
+                    </div>
+                </div>
+
+                <!-- Tab 1: Source Code View -->
+                <div class="tab-content active" id="tab-code">
+                    <div class="code-viewer-container">
+                        <pre class="code-pre"><code id="codeBlock"></code></pre>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Live Interactive Preview Sandbox -->
+                <div class="tab-content" id="tab-preview">
+                    <div class="preview-container">
+                        <div class="preview-toolbar">
+                            <div class="preview-badge-status">
+                                <span class="preview-dot"></span>
+                                <span>Interactive Sandbox Running</span>
+                            </div>
+                            <button class="header-btn" id="reloadPreviewBtn" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 4 23 10 17 10"></polyline>
+                                    <polyline points="1 20 1 14 7 14"></polyline>
+                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                                </svg>
+                                <span>Reset Preview</span>
+                            </button>
+                        </div>
+                        <iframe id="previewIframe" class="preview-iframe" sandbox="allow-scripts allow-forms allow-modals"></iframe>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Expected Sample Output -->
+                <div class="tab-content" id="tab-sample">
+                    <div class="output-container">
+                        <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:600;">
+                            Record Book / Practical Manual Expected Output:
+                        </div>
+                        <div class="output-box" id="sampleOutputBlock"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottom Navigation: Prev / Next -->
+            <nav class="exp-navigation-footer" aria-label="Experiment navigation">
+                <button class="nav-direction-btn" id="prevExpBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    <div>
+                        <div class="nav-label">Previous</div>
+                        <div class="nav-title" id="prevExpTitle">None</div>
+                    </div>
+                </button>
+
+                <div style="font-size: 0.8rem; color: var(--text-muted);">
+                    Use <kbd style="background:var(--bg-card); padding:2px 6px; border-radius:4px; border:1px solid var(--border-color); font-family:var(--font-mono);">←</kbd>
+                    <kbd style="background:var(--bg-card); padding:2px 6px; border-radius:4px; border:1px solid var(--border-color); font-family:var(--font-mono);">→</kbd> arrows to navigate
+                </div>
+
+                <button class="nav-direction-btn" id="nextExpBtn">
+                    <div style="text-align: right;">
+                        <div class="nav-label">Next</div>
+                        <div class="nav-title" id="nextExpTitle">2. Check Positive, Negative or Zero</div>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </nav>
+
+        </main>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- All Programs / Practical Record Bulk Modal -->
+    <div class="modal-overlay" id="exportModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>All 10 Lab Experiments Compilation</h3>
+                <button class="modal-close-btn" id="closeExportModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                    Here is the complete consolidated collection of all 10 experiments. You can copy the entire practical manual with a single click or jump to any experiment:
+                </p>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="modalExpPills">
+                    <!-- Dynamic experiment jump buttons -->
+                </div>
+                <div style="margin-top: 1rem;">
+                    <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.5rem;">
+                        FULL LABORATORY RECORD TEXT (ALL EXPERIMENTS):
+                    </label>
+                    <textarea id="allProgramsTextArea" readonly style="width: 100%; height: 260px; font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; resize: none;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary-action" id="closeModalFooterBtn">Close</button>
+                <button class="btn-primary-action" id="copyAllCombinedBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy All 10 Programs</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experiment 9</title>
+</head>
+<body>
+    <h2>Members Marks Table</h2>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Member</th>
+                <th>Mark</th>
+            </tr>
+        </thead>
+        <tbody id="members"></tbody>
+        <tfoot>
+            <tr>
+                <th>Total</th>
+                <td id="total"></td>
+            </tr>
+            <tr>
+                <th>Average</th>
+                <td id="average"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script>
+        const members = [
+            { name: "Arun", mark: 80 },
+            { name: "Bala", mark: 90 },
+            { name: "Cathy", mark: 70 },
+            { name: "Divya", mark: 85 }
+        ];
+
+        let sum = 0;
+        const tbody = document.getElementById("members");
+
+        members.forEach(function (member) {
+            const row = document.createElement("tr");
+            const nameCell = document.createElement("td");
+            const markCell = document.createElement("td");
+
+            nameCell.textContent = member.name;
+            markCell.textContent = member.mark;
+
+            row.appendChild(nameCell);
+            row.appendChild(markCell);
+            tbody.appendChild(row);
+
+            sum += member.mark;
+        });
+
+        document.getElementById("total").textContent = sum;
+        document.getElementById("average").textContent =
+            (sum / members.length).toFixed(2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experiment 2</title>
+</head>
+<body>
+    <h2>Positive, Negative or Zero</h2>
+
+    <input type="number" id="num" placeholder="Enter a number">
+    <button onclick="checkNumber()">Check</button>
+
+    <p id="result"></p>
+
+    <script>
+        function checkNumber() {
+            let n = Number(document.getElementById("num").value);
+            let result = document.getElementById("result");
+
+            if (document.getElementById("num").value.trim() === "") {
+                result.innerHTML = "Please enter a number.";
+            } else if (n > 0) {
+                result.innerHTML = "The number is Positive.";
+            } else if (n < 0) {
+                result.innerHTML = "The number is Negative.";
+            } else {
+                result.innerHTML = "The number is Zero.";
+            }
+        }
+    </script>
+</body>
+</html>

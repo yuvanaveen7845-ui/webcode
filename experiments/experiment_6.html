@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experiment 6</title>
+</head>
+<body>
+    <h2>To-Do List</h2>
+
+    <input type="text" id="task" placeholder="Enter a task">
+    <button id="add">Add Task</button>
+
+    <ul id="list"></ul>
+
+    <script>
+        const taskInput = document.getElementById("task");
+        const addButton = document.getElementById("add");
+        const taskList = document.getElementById("list");
+
+        function addTask() {
+            const task = taskInput.value.trim();
+
+            if (task === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            span.textContent = task + " ";
+
+            const del = document.createElement("button");
+            del.textContent = "Delete";
+
+            del.addEventListener("click", function () {
+                li.remove();
+            });
+
+            li.appendChild(span);
+            li.appendChild(del);
+            taskList.appendChild(li);
+
+            taskInput.value = "";
+            taskInput.focus();
+        }
+
+        addButton.addEventListener("click", addTask);
+
+        taskInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+    </script>
+</body>
+</html>
